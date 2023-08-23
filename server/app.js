@@ -10,14 +10,14 @@ app.use(cors())
 
 
 const corsOptions = {
-    // origin: 'http://localhost:3000/', // Replace with your frontend domain
-    origin: true,
+    origin: 'https://react-streaming-frontend.vercel.app', // Replace with your frontend domain
+    // origin: true,
     credentials: true,
 };
 
 app.use(cors(corsOptions));
 
-app.get("/", cors(), (req, res) => {
+app.get("/", (req, res) => {
     res.json("hello");
     res.set('Access-Control-Allow-Origin', '*');
 
