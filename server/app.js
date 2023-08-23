@@ -8,22 +8,32 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-const corsOptions = {
-    origin: 'https://react-streaming-frontend.vercel.app', // Replace with your frontend domain
-    // origin: true,
-    credentials: true,
-};
 
 app.use(cors({
     origin: ['https://react-streaming-frontend.vercel.app'],
     methods:['GET','POST'],
     credentials: true,
-    ));
+));
+
+app.all('/*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header("Access-Control-Allow-Headers", "X-Requested-With,     Content-Type");
+    next();
+});
 
 app.get("/", (req, res) => {
-    res.json("hello");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
     res.set('Access-Control-Allow-Origin', '*');
+
+    res.json("hello");
 
 });
 
@@ -31,6 +41,9 @@ app.get("/", (req, res) => {
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
+    res.set('Access-Control-Allow-Origin', '*');
 
     if (token == null) res.status(401)
 
@@ -43,6 +56,8 @@ function authenticateToken(req, res, next) {
 
 
 app.post('/verify-token', authenticateToken, (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
     res.set('Access-Control-Allow-Origin', '*');
     res.status(200).json({ valid: true, decoded: req.decoded });
 });
