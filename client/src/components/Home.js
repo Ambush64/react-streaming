@@ -16,7 +16,7 @@ function Home() {
     useEffect(() => {
         const token = localStorage.getItem('token');
 
-        fetch('/verify-token', {
+        fetch('https://react-streaming.vercel.app/verify-token', {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${token}`
