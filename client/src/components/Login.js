@@ -13,7 +13,7 @@ function Login() {
     useEffect(() => {
         if (token) {
             try {
-                fetch('/verify-token', {
+                fetch('https://react-streaming.vercel.app/verify-token', {
                     method: 'POST',
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -42,7 +42,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await fetch('/login', {
+            const response = await fetch('https://react-streaming.vercel.app/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
