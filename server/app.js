@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 
 
 app.use(cors({
-    origin: ['https://react-streaming-frontend.vercel.app'],
+    origin: ['*'],
     methods:['GET','POST'],
     credentials: true,
 ));
