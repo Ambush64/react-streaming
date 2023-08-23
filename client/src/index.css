@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+#preloader:before {
+  content: "";
+  width: 70px;
+  height: 70px;
+  border: 6px solid #3F51B5;
+  border-left-color: #009688;
+  border-top-color: #FF9800;
+  border-bottom-color: #FF5722;
+  position: fixed;
+  top: calc(45% - 30px);
+  left: calc(50% - 30px);
+  border-radius: 100%;
+  -webkit-animation: preloader-animate 1s linear infinite;
+  animation: preloader-animate 1s linear infinite;
+}
+
+/*-- Loader Animation CSS --*/
+@keyframes preloader-animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*-- Loader Animation CSS With webkit For Browsers Support --*/
+@-webkit-keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
